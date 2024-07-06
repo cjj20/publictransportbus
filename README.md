@@ -6,7 +6,7 @@ As of now the code works best with the specific stops.txt file and isle-os-man-l
 
 To run the code files these are the following steps: 
 for 'readingcolumn.csv.cpp' enter: 
-`sudo clang++ readingcsvcolumn.cpp gtfs-realtime.pb.cc -o gtfsplain3.out `pkg-config --cflags --libs protobuf``
+`sudo clang++ readingcsvcolumn.cpp gtfs-realtime.pb.cc -o gtfsplain3.out` `pkg-config --cflags --libs protobuf`
 `./gtfsplain3.out`
 
 for 'gettingdata.cc' enter: 
