@@ -1,4 +1,4 @@
-#Public Transort Bus
+Public Transport Bus
 
 This repository attempts to compare gtfs data to osm data and is still under development. So far the gtfs code and osm code are in separate files. In the gtfs file 'readingcsvcolumn.cpp' the gtfs ids are displayed and a specific gtfs id is found from those gtfs ids. In the osm file, libosmpbfreader/gettingdata.cc the data is sorted according to highway=bus_stop and can also be sorted according to 'name' tags as well as 'ref' tags.
 
