@@ -1,3 +1,6 @@
 [submodule "OSM-binary"]
 	path = OSM-binary
 	url = https://github.com/openstreetmap/OSM-binary
+[submodule "libosmium"]
+	path = libosmium
+	url = https://github.com/osmcode/libosmium
