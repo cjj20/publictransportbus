@@ -4,3 +4,6 @@
 [submodule "libosmium"]
 	path = libosmium
 	url = https://github.com/osmcode/libosmium
+[submodule "libosmpbfreader"]
+	path = libosmpbfreader
+	url = https://github.com/hove-io/libosmpbfreader
