@@ -7,3 +7,6 @@
 [submodule "libosmpbfreader"]
 	path = libosmpbfreader
 	url = https://github.com/hove-io/libosmpbfreader
+[submodule "protozero"]
+	path = protozero
+	url = https://github.com/mapbox/protozero
