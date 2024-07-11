@@ -8,7 +8,9 @@ To obtain matched stops, osm stops and gtfs stops:
 1. sudo apt-get install libosmpbf-dev
 2. g++ -O3 -std=c++0x -Wall -Wextra -o getdata listgtfs2.cpp gettingosmdatacopy.cc -lprotobuf-lite -losmpbf -lz
 3. ./getdata isle-of-man-latest.osm.pbf
-Note the -lprotobuf-lite tag is required so if prompted install protobuf may have to do so
+
+   
+Note: the -lprotobuf-lite tag is required so if prompted install protobuf may have to do so
 
 Note: Need git submodules in order to run the code. Instructions: 
 git submodule add  https://github.com/openstreetmap/OSM-binary OSM-binary
