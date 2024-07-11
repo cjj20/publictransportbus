@@ -9,6 +9,8 @@ struct Stop {
      std::string stop_name;
      std::string stop_lat;
      std::string stop_lon;
+     ///double stop_lat;
+     ////double stop_lon;
 
 
 };
