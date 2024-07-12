@@ -15,6 +15,9 @@ To obtain matched stops, osm bus stop tagged stops and gtfs stops:
 7. g++ -O3 -std=c++0x -Wall -Wextra -o getda gettingosmdata6.cc listgtfs2.cpp vincentyinversecopyy.cpp  -lprotobuf-lite -losmpbf -lz
 8. ./getda isle-of-man-latest.osm.pbf
 
+
+Here is a link to a screenshot of what the above command should output: https://drive.google.com/file/d/1y1KiLo2QLio9MkR2HgkYL2tvdRI4r3vi/view?usp=drivesdk
+
    
 Note: the -lprotobuf-lite tag is related to OSM-binary which libosmpbfreader is dependent on. But if prompted to install protobuf may have to do so
 
