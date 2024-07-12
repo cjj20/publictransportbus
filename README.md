@@ -11,9 +11,10 @@ To obtain matched stops, osm bus stop tagged stops and gtfs stops:
 3. In OSM-binary folder: mkdir build && cd build  then: cmake ..   then: make  finally enter : sudo make install
 4. In publictransportbus folder enter: g++ -O3 -std=c++0x -Wall -Wextra -o getdata listgtfs2.cpp gettingosmdatacopy.cc -lprotobuf-lite -losmpbf -lz
 5. ./getdata isle-of-man-latest.osm.pbf
-6. For running the program to obtain stops and to match based on distance away from each other using the vincenty inverse algorithm. That is (only those < 30m were matched) :
-7. g++ -O3 -std=c++0x -Wall -Wextra -o getda gettingosmdata6.cc listgtfs2.cpp vincentyinversecopyy.cpp  -lprotobuf-lite -losmpbf -lz
-8. ./getda isle-of-man-latest.osm.pbf
+6.For running the program to generate csv files contaning matches and non-matches based on distance: g++ -O3 -std=c++0x -Wall -Wextra -o getcsvdata getting_osm_gtfs_data_csv.cc listgtfs2.cpp vincentyinversecopyy.cpp  -lprotobuf-lite -losmpbf -lz     ./getcsvdata isle-of-man-latest.osm.pbf
+7. For running the program to obtain stops and to match based on distance away from each other using the vincenty inverse algorithm. That is (only those < 30m were matched) :
+8. g++ -O3 -std=c++0x -Wall -Wextra -o getda gettingosmdata6.cc listgtfs2.cpp vincentyinversecopyy.cpp  -lprotobuf-lite -losmpbf -lz
+9. ./getda isle-of-man-latest.osm.pbf
 
 
 Here is a link to a screenshot of what the above command should output: https://drive.google.com/file/d/1y1KiLo2QLio9MkR2HgkYL2tvdRI4r3vi/view?usp=drivesdk
