@@ -6,9 +6,10 @@ The program requests the reader to enter a ref value for which is gives the numb
 
 To obtain matched stops, osm stops and gtfs stops:  
 1. sudo apt-get install libosmpbf-dev
-2. In OSM-binary folder: mkdir build && cd build  then: cmake ..   then: make  finally enter :make install
-3. g++ -O3 -std=c++0x -Wall -Wextra -o getdata listgtfs2.cpp gettingosmdatacopy.cc -lprotobuf-lite -losmpbf -lz
-4. ./getdata isle-of-man-latest.osm.pbf
+2. In libosmpbfreader folder enter: make
+3. In OSM-binary folder: mkdir build && cd build  then: cmake ..   then: make  finally enter : sudo make install
+4. In publictransportbus folder enter: g++ -O3 -std=c++0x -Wall -Wextra -o getdata listgtfs2.cpp gettingosmdatacopy.cc -lprotobuf-lite -losmpbf -lz
+5. ./getdata isle-of-man-latest.osm.pbf
 
    
 Note: the -lprotobuf-lite tag is related to OSM-binary which libosmpbfreader is dependent on. But if prompted to install protobuf may have to do so
