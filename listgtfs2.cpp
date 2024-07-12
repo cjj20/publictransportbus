@@ -25,8 +25,8 @@ using namespace std;
 //list<pair<int, string>> mylit = readgtfs();
 //list<string> mylit = readgtfs();
 
-void readgtfs(list<Stop>& stops) {
-    ifstream fileRead("stops.txt");
+void readgtfs(list<Stop>& stops, std::string filename) {
+    ifstream fileRead(filename);
    string line;
    int rowCounter=0;
    //int rowIdx=0; 

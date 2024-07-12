@@ -127,16 +127,16 @@ struct Counter {
 };
 
 int main(int argc, char** argv) {
-     if(argc != 2) {
-         std::cout << "Usage: " << argv[0] << " file_to_read.osm.pbf" << std::endl;
+     if(argc != 3) {
+         std::cout << "Usage: " << argv[0] << " file_to_read.osm.pbf stops.txt" << std::endl;
          return 1;
      }
 
      
 
 
-     std::list<Stop> stops;   
-     readgtfs(stops);    
+     std::list<Stop> stops;
+     readgtfs(stops,argv[2]);
      
 
     // std::cout << "Enter a number: ";
