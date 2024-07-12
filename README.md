@@ -11,7 +11,7 @@ To obtain matched stops, osm bus stop tagged stops and gtfs stops:
 3. In OSM-binary folder: mkdir build && cd build  then: cmake ..   then: make  finally enter : sudo make install
 4. In publictransportbus folder enter: g++ -O3 -std=c++0x -Wall -Wextra -o getdata listgtfs2.cpp gettingosmdatacopy.cc -lprotobuf-lite -losmpbf -lz
 5. ./getdata isle-of-man-latest.osm.pbf
-6. For running the program to obtain stops and to match based on distance away from each other. That is (only those < 30m were matched) :
+6. For running the program to obtain stops and to match based on distance away from each other using the vincenty inverse algorithm. That is (only those < 30m were matched) :
 7. g++ -O3 -std=c++0x -Wall -Wextra -o getda gettingosmdata6.cc listgtfs2.cpp vincentyinversecopyy.cpp  -lprotobuf-lite -losmpbf -lz
 8. ./getda isle-of-man-latest.osm.pbf
 
