@@ -1,0 +1,57 @@
+on: push
+jobs:
+  build:
+    name: Build and generate output
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install build-essential libosmpbf-dev cmake protobuf-compiler
+      - name: First Make
+        working-directory: libosmpbfreader
+        run: |
+          make
+          mkdir build && cd build && cmake ..
+      - name: Second Make
+        working-directory: libosmpbfreader/build
+        run: |
+          ls -al
+          make
+          sudo make install
+      - name: G++
+        run: |
+          echo "getdata"
+          g++ -O3 -std=c++0x -Wall -Wextra -o getdata listgtfs2.cpp gettingosmdatacopy.cc -lprotobuf-lite -losmpbf -lz
+          echo "getcsvdata"
+          g++ -O3 -std=c++0x -Wall -Wextra -o getcsvdata getting_osm_gtfs_data_csv.cc listgtfs2.cpp vincentyinversecopyy.cpp -lprotobuf-lite -losmpbf -lz
+          echo "getda"
+          g++ -O3 -std=c++0x -Wall -Wextra -o getda gettingosmdata6.cc listgtfs2.cpp vincentyinversecopyy.cpp -lprotobuf-lite -losmpbf -lz
+          #ls && clang++ readingcsvcolumn.cpp gtfs-realtime.pb.cc -o gtfsplain3.out pkg-config --cflags --libs protobuf ./gtfsplain3.out
+          #ls && g++ -O3 -std=c++0x -Wall -Wextra -o getting_data gettingdata.cc -lprotobuf-lite -losmpbf -lz ./getting_data isle-of-man-latest.osm.pbf
+          ls -alth
+      - name: Run GetCSVData
+        run: ./getcsvdata isle-of-man-latest.osm.pbf
+      - name: Run GetData
+        run: ./getdata isle-of-man-latest.osm.pbf
+      - name: Run GetDa
+        run: ./getda isle-of-man-latest.osm.pbf
+      - name: Output Summary
+        run: |
+          ls -alth
+          echo ">> Line counts:"
+          wc -l *.csv
+          echo ">> Head:"
+          head *.csv
+          echo ">> Tail:"
+          tail *.csv
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-csv-files
+          path: |
+            *.csv
