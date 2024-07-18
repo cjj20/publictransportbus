@@ -15,7 +15,7 @@ struct Stop {
 
 };
 
-void readgtfs(std::list<Stop>& stops);
+void readgtfs(std::list<Stop>& stops, std::string filename);
 /////////void readgtfs(std::list<std::string>& myli);
 
 #endif

@@ -1,0 +1,37 @@
+on: push
+jobs:
+  build:
+    name: Build and generate output
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install build-essential libosmpbf-dev cmake protobuf-compiler
+      - name: Compile
+        run: ./compile-all.sh
+      - name: Run GetCSVData
+        run: ./getcsvdata isle-of-man-latest.osm.pbf stops.txt
+      - name: Run GetData
+        run: ./getdata isle-of-man-latest.osm.pbf stops.txt
+      - name: Run GetDa
+        run: ./getda isle-of-man-latest.osm.pbf stops.txt
+      - name: Output Summary
+        run: |
+          ls -alth
+          echo ">> Line counts:"
+          wc -l *.csv
+          echo ">> Head:"
+          head *.csv
+          echo ">> Tail:"
+          tail *.csv
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-csv-files
+          path: |
+            *.csv
