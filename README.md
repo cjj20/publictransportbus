@@ -34,6 +34,17 @@ To obtain matched stops, osm bus stop tagged stops and gtfs stops:
 6. For running the program to obtain stops and to match based on distance away from each other using the vincenty inverse algorithm. That is (only those < 30m were matched) :
 7. g++ -O3 -std=c++0x -Wall -Wextra -o getda gettingosmdata6.cc listgtfs2.cpp vincentyinversecopyy.cpp  -lprotobuf-lite -losmpbf -lz
 8. ./getda isle-of-man-latest.osm.pbf stops.txt
+9. This is for matching gtfs to osm stops by name:
+    sudo g++ -O2 -o nammatch119 matchingbynam.cc listgtfs22.cpp -losmpbf -lprotobuf -lz
+   ./nammatch119 oregon-latest.osm.pbf oregon-stops.txt
+
+10. These commands are for use with a standard quadtree:
+     sudo g++ -O2 -o quad1 quadtree3.cpp listgtfs22.cpp -losmpbf -lprotobuf -lz
+     ./quad1 oregon-latest.osm.pbf oregon-stops.txt
+
+11. These set of commands are to be used with the modified quadtree which stores both gtfs and osm data and attempts to match by proximity. There is allowance to also use a third set of coordinates:
+     sudo g++ -O2 -o quad2 quadtree3Modified.cpp listgtfs22copy.cpp -losmpbf -lprotobuf -lz
+     ./quad2 oregon-latest.osm.pbf oregon-stops.txt
 
 
 Here is a link to a screenshot of what the above command should output: https://drive.google.com/file/d/1y1KiLo2QLio9MkR2HgkYL2tvdRI4r3vi/view?usp=drivesdk
