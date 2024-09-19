@@ -1,6 +1,12 @@
 FROM ubuntu:latest
 
-RUN apt update -y && apt install -y build-essential libosmpbf-dev cmake protobuf-compiler
+RUN apt-get update -y && apt-get install -y \
+    build-essential \
+    libosmpbf-dev \
+    cmake \
+    vim \
+    tmux \
+    protobuf-compiler
 
 COPY . /app
 
