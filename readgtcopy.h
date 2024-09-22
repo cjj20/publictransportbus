@@ -12,6 +12,9 @@ struct Stop {
      ///double stop_lat;
      ////double stop_lon;
 	 
+	 Stop(const std::string& id, const std::string& name, const std::string& lat = "0.0", const std::string& lon = "0.0")
+        : stop_id(id), stop_name(name), stop_lat(lat), stop_lon(lon) {}
+	 
 	 Stop() = default;
 
 
