@@ -3,7 +3,7 @@
 This repository compares gtfs data to osm data and is still under development. So far There are various files which can be run to obtain stops and details. Some of the  gtfs code and osm code are in separate files. While others are integrated. 
  
 
-As of now the code works best with the specific stops.txt file (which was amended for the addition of osm data for comparison reasons, Isle of Man gtfs where difficult to obtain) and isle-os-man-latest.osm.pbf files included in the repository, thus changes have to be made for flexibility.
+The code enables the user to match by ref/ID, name, distance (both haversine and vincenty inverse algorithms utilised), also there is the availability of matching by distance using a quadtree. Matches as well as non-matches can be displayed some are saved to csv files. More information on the components and how they were can be found in the public gist for this project.
 
 
 ## Installing
@@ -26,35 +26,60 @@ git submodule update --init --recursive
 ## Running
 
 To obtain matched stops, osm bus stop tagged stops and gtfs stops:
-1. In libosmpbfreader folder enter: make
-2. In OSM-binary folder: mkdir build && cd build  then: cmake ..   then: make  finally enter : sudo make install
-3. In publictransportbus folder enter: g++ -O3 -std=c++0x -Wall -Wextra -o getdata listgtfs2.cpp gettingosmdatacopy.cc -lprotobuf-lite -losmpbf -lz
-4. ./getdata isle-of-man-latest.osm.pbf stops.txt
-5.For running the program to generate csv files contaning matches and non-matches based on distance: g++ -O3 -std=c++0x -Wall -Wextra -o getcsvdata getting_osm_gtfs_data_csv.cc listgtfs2.cpp vincentyinversecopyy.cpp  -lprotobuf-lite -losmpbf -lz     ./getcsvdata isle-of-man-latest.osm.pbf stops.txt
-6. For running the program to obtain stops and to match based on distance away from each other using the vincenty inverse algorithm. That is (only those < 30m were matched) :
-7. g++ -O3 -std=c++0x -Wall -Wextra -o getda gettingosmdata6.cc listgtfs2.cpp vincentyinversecopyy.cpp  -lprotobuf-lite -losmpbf -lz
-8. ./getda isle-of-man-latest.osm.pbf stops.txt
-9. This is for matching gtfs to osm stops by name:
-    sudo g++ -O2 -o nammatch119 matchingbynam.cc listgtfs22.cpp -losmpbf -lprotobuf -lz
-   ./nammatch119 oregon-latest.osm.pbf oregon-stops.txt
+1. In libosmpbfreader folder enter: ``make``
+2. In OSM-binary folder: ``mkdir build && cd build``  then: ``cmake ..``   then: ``make`` finally enter : ``sudo make install``
+3. In publictransportbus folder enter: 
+    ```
+    g++ -O3 -std=c++0x -Wall -Wextra -o getdata listgtfs2.cpp gettingosmdatacopy.cc -lprotobuf-lite -losmpbf -lz
+    ./getdata isle-of-man-latest.osm.pbf stops.txt
+    ```
+4. For running the program to generate csv files contaning matches and non-matches based on distance: 
+   ```
+   g++ -O3 -std=c++0x -Wall -Wextra -o getcsvdata getting_osm_gtfs_data_csv.cc listgtfs2.cpp vincentyinversecopyy.cpp  -lprotobuf-lite -losmpbf -lz    
+   ./getcsvdata isle-of-man-latest.osm.pbf stops.txt
+   ```
+5. For running the program to obtain stops and to match based on distance away from each other using the vincenty inverse algorithm. That is (only those < 30m were matched) :
+   ```
+   g++ -O3 -std=c++0x -Wall -Wextra -o getda gettingosmdata6.cc listgtfs2.cpp vincentyinversecopyy.cpp  -lprotobuf-lite -losmpbf -lz
+   ./getda isle-of-man-latest.osm.pbf stops.txt
+   ```
+6. This is for matching gtfs to osm stops by name:
+    ```
+    sudo g++ -O2 -o nammatch10 matchingbynam.cc listgtfs22.cpp vincentyinversecopyy.cpp -losmpbf -lprotobuf -lz
+    ./nammatch10 oregon-latest.osm.pbf oregon-stops.txt
+    ```
+7. These commands are for use with a standard quadtree:
+   ```
+   sudo g++ -O2 -o quad1 quadtree3.cpp listgtfs22.cpp -losmpbf -lprotobuf -lz
+   ./quad1 oregon-latest.osm.pbf oregon-stops.txt
+   ```
+8. These set of commands are to be used with the modified quadtree which stores both gtfs and osm data and attempts to match by proximity. There is allowance to also use a third set of coordinates:
+     ```
+     sudo g++ -O2 -o quadmodif29 quadtree4Modified.cpp listgtfs22copy.cpp -losmpbf -lprotobuf -lz
+     ./quadmodif29 oregon-latest.osm.pbf oregon-stops.txt
+     ```
+9.  This command is for matching stops by ref: 
+     ```
+     sudo g++ -O2 -o getda matchingbyref.cc listgtfs22.cpp -lprotobuf-lite -losmpbf -lz
+     ./getda oregon-latest.osm.pbf oregon-stops.txt
+     ```
 
-10. These commands are for use with a standard quadtree:
-     sudo g++ -O2 -o quad1 quadtree3.cpp listgtfs22.cpp -losmpbf -lprotobuf -lz
-     ./quad1 oregon-latest.osm.pbf oregon-stops.txt
-
-11. These set of commands are to be used with the modified quadtree which stores both gtfs and osm data and attempts to match by proximity. There is allowance to also use a third set of coordinates:
-     sudo g++ -O2 -o quad2 quadtree3Modified.cpp listgtfs22copy.cpp -losmpbf -lprotobuf -lz
-     ./quad2 oregon-latest.osm.pbf oregon-stops.txt
-
+10. Commands for the Hidden Markov Model Forward Algorithm: 
+     ```
+     sudo g++ -o forwardhmm mainhmm.cpp hmm.cpp
+     ./forwardhmm
+     ```
+11. Cmake is also available and was used to compact commands.
 
 Here is a link to a screenshot of what the above command should output: https://drive.google.com/file/d/1y1KiLo2QLio9MkR2HgkYL2tvdRI4r3vi/view?usp=drivesdk
 
 In the gtfs file 'readingcsvcolumn.cpp' the gtfs ids are displayed and a specific gtfs id is found from those gtfs ids. In the osm file, libosmpbfreader/gettingdata.cc the data is sorted according to highway=bus_stop and can also be sorted according to 'name' tags as well as 'ref' tags.
 The program requests the reader to enter a ref value for which is gives the number of nodes for that value as well as it's latitude and longitude.
 
-Here are the following steps for other code files: for 'readingcolumn.csv.cpp' enter: sudo clang++ readingcsvcolumn.cpp gtfs-realtime.pb.cc -o gtfsplain3.out pkg-config --cflags --libs protobuf ./gtfsplain3.out
+Here are the following steps for other code files: 
+- for 'readingcolumn.csv.cpp' enter: ``sudo clang++ readingcsvcolumn.cpp gtfs-realtime.pb.cc -o gtfsplain3.out pkg-config --cflags --libs protobuf`` then ``./gtfsplain3.out``
 
-for 'gettingdata.cc' enter: g++ -O3 -std=c++0x -Wall -Wextra -o getting_data gettingdata.cc -lprotobuf-lite -losmpbf -lz ./getting_data isle-of-man-latest.osm.pbf stops.txt
+- for 'gettingdata.cc' enter: ``g++ -O3 -std=c++0x -Wall -Wextra -o getting_data gettingdata.cc -lprotobuf-lite -losmpbf -lz`` then ``./getting_data isle-of-man-latest.osm.pbf stops.txt``
 
 ## Downloading your own data
 
