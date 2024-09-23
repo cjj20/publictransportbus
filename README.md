@@ -30,7 +30,7 @@ To obtain matched stops, osm bus stop tagged stops and gtfs stops:
 2. In OSM-binary folder: ``mkdir build && cd build``  then: ``cmake ..``   then: ``make`` finally enter : ``sudo make install``
 3. In publictransportbus folder enter: 
     ```
-    g++ -O3 -std=c++0x -Wall -Wextra -o getdata listgtfs2.cpp gettingosmdatacopy.cc -lprotobuf-lite -losmpbf -lz
+    sudo g++ -O2 -o getda gettingosmdatacopy.cc listgtfs22.cpp -lprotobuf-lite -losmpbf -lz
     ./getdata isle-of-man-latest.osm.pbf stops.txt
     ```
 4. For running the program to generate csv files contaning matches and non-matches based on distance: 
