@@ -75,7 +75,9 @@ struct Counter {
 			
 		}
 		
-		 
+		}//
+		
+  }//node_callback end 
 		
   // This method is called every time a Way is read
   // refs is a vector that contains the reference to the nodes that compose the
