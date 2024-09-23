@@ -75,7 +75,9 @@ To obtain matched stops, osm bus stop tagged stops and gtfs stops:
      ```
 11. Cmake is also available and was used to compact commands.
 
-Here is a link to a screenshot of what the above command should output: https://drive.google.com/file/d/1y1KiLo2QLio9MkR2HgkYL2tvdRI4r3vi/view?usp=drivesdk
+What the above command should output:
+
+<img width="500dp" src=".github/comparison - distance for coordinates.jpg">
 
 In the gtfs file 'readingcsvcolumn.cpp' the gtfs ids are displayed and a specific gtfs id is found from those gtfs ids. In the osm file, libosmpbfreader/gettingdata.cc the data is sorted according to highway=bus_stop and can also be sorted according to 'name' tags as well as 'ref' tags.
 The program requests the reader to enter a ref value for which is gives the number of nodes for that value as well as it's latitude and longitude.
