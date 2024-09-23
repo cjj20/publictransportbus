@@ -35,13 +35,13 @@ To obtain matched stops, osm bus stop tagged stops and gtfs stops:
     ```
 4. For running the program to generate csv files contaning matches and non-matches based on distance: 
    ```
-   g++ -O3 -std=c++0x -Wall -Wextra -o getcsvdata getting_osm_gtfs_data_csv.cc listgtfs2.cpp vincentyinversecopyy.cpp  -lprotobuf-lite -losmpbf -lz    
+   sudo g++ -O2 -o getcsvdata getting_osm_gtfs_data_csv.cc listgtfs22.cpp vincentyinversecopyy.cpp -losmpbf -lprotobuf -lz
    ./getcsvdata isle-of-man-latest.osm.pbf stops.txt
    ```
 5. For running the program to obtain stops and to match based on distance away from each other using the vincenty inverse algorithm. That is (only those < 30m were matched) :
    ```
-   g++ -O3 -std=c++0x -Wall -Wextra -o getda gettingosmdata6.cc listgtfs2.cpp vincentyinversecopyy.cpp  -lprotobuf-lite -losmpbf -lz
-   ./getda isle-of-man-latest.osm.pbf stops.txt
+    sudo g++ -O2 -o getda2 gettingosmdata6.cc listgtfs22.cpp vincentyinversecopyy.cpp -losmpbf -lprotobuf -lz
+   ./getda2 isle-of-man-latest.osm.pbf stops.txt
    ```
 6. This is for matching gtfs to osm stops by name:
     ```
