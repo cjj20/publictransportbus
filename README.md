@@ -60,8 +60,12 @@ To obtain matched stops, osm bus stop tagged stops and gtfs stops:
      ```
 9.  This command is for matching stops by ref: 
      ```
-     sudo g++ -O2 -o getda matchingbyref.cc listgtfs22.cpp -lprotobuf-lite -losmpbf -lz
+     sudo g++ -O2 -o getda matchingbyref.cc listgtfs22copy.cpp -lprotobuf-lite -losmpbf -lz
      ./getda oregon-latest.osm.pbf oregon-stops.txt
+	 
+	 sudo g++ -O2 -o getda matchingbyref.cc listgtfs22.cpp -lprotobuf-lite -losmpbf -lz
+     ./getda oregon-latest.osm.pbf oregon-stops.txt
+	 
      ```
 
 10. Commands for the Hidden Markov Model Forward Algorithm: 
