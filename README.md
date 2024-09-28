@@ -5,7 +5,7 @@ This repository compares gtfs data to osm data and is still under development. S
 
 The code enables the user to match by coordinates, ref/ID, name, distance (both haversine and vincenty inverse algorithms utilised), also there is the availability of matching by distance using a quadtree. Matches as well as non-matches can be displayed some are saved to csv files. More information on the components and how they were deployed can be found in the public gist for this project. 
 
-### Gist containing detailed summary of how the project works:
+#### Gist containing detailed summary of how the project works:
 https://gist.github.com/cjj20/3cf2a9fcb8333d2d11ab5b2710dc9b3b
 
 
